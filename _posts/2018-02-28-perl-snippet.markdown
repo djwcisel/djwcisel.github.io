@@ -1,10 +1,11 @@
 ---
 layout: post
-title:  "Can you edit?"
+title:  "Acquiring the Data"
 date:   2018-02-28 11:36:16 -0500
 categories: jekyll update
 ---
-DW's first attempt at a perl snippet:
+NCBI's Nucleotide database was searched using the following perl code (adapted from: xxx) on 2/28/2018
+This code retrieves all mRNA sequences for txid7898 (Actinopterygii - all ray-finned fishes).
 
 {% highlight perl %}
 use LWP::Simple;
@@ -23,7 +24,7 @@ $key = $1 if ($output =~ /<QueryKey>(\d+)<\/QueryKey>/);
 $count = $1 if ($output =~ /<Count>(\d+)<\/Count>/);
 
 #open output file for writing
-open(OUT, ">test.fna") || die "Can't open file!\n";
+open(OUT, ">txid7898.fna") || die "Can't open file!\n";
 
 #retrieve data in batches of 500
 $retmax = 500;
@@ -37,3 +38,7 @@ for ($retstart = 0; $retstart < $count; $retstart += $retmax) {
 close OUT;
 {% endhighlight %}
 
+This retrieved a total number of xxx sequences.
+
+However, while some Transcriptome Shotgun Assembled (TSA) sequences were retrieved, not all of the TSA
+databases are found in NCBI's Nucleotide database. Therefore, 
